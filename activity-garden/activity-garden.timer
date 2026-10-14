@@ -1,0 +1,12 @@
+[Unit]
+Description=Update the decorative GitHub activity record daily
+
+[Timer]
+OnCalendar=*-*-* 22:00:00 Europe/Paris
+Persistent=true
+RandomizedDelaySec=5min
+OnBootSec=5min
+Unit=activity-garden.service
+
+[Install]
+WantedBy=timers.target

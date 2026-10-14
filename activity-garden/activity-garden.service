@@ -1,0 +1,23 @@
+[Unit]
+Description=Daily decorative GitHub activity record
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=activity-garden
+Group=activity-garden
+EnvironmentFile=/etc/activity-garden.env
+ExecStart=/usr/bin/python3 /opt/activity-garden/update.py
+TimeoutStartSec=5min
+UMask=0077
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/var/lib/activity-garden
+PrivateTmp=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictSUIDSGID=yes
+
