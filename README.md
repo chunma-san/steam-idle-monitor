@@ -1,0 +1,59 @@
+![Steam Idle Monitor: animated project banner](assets/banner.svg)
+
+# Steam Idle Monitor
+
+A small report generator that estimates idle and farming intervals from ArchiSteamFarm container logs.
+
+**Runtime:** Python 3.11+ · **Configuration:** environment variables · **Deployment:** self-hosted
+
+## Quick start
+
+The supported deployment target is Linux. Create an isolated Python environment:
+
+```sh
+python3 -m venv venv
+. venv/bin/activate
+# This script uses the Python standard library.
+cp .env.example .env
+# Edit .env first. Use shell-compatible quoting for JSON and values with spaces.
+set -a
+. ./.env
+set +a
+python monitor.py
+```
+
+Only source a configuration file you created and trust. Starting the application can connect to external services; configure credentials and destinations first.
+
+## Usage
+
+Set ASF_CONTAINER to your ASF container name, then run the script. It reads up to 720 hours of available Docker logs and prints a report. Retention, log format changes and missing events affect the estimates.
+
+## Configuration
+
+`.env.example` contains placeholders only. Real credentials, IDs, storage locations and account settings belong in your private local configuration.
+
+| Variable | Requirement |
+| --- | --- |
+| `ASF_CONTAINER` | Name of the ASF Docker container to inspect. |
+
+## How it works and operational notes
+
+Requires Docker CLI access. It does not log into Steam, sell cards or modify your inventory. ArchiSteamFarm is an independent upstream project.
+
+## Project layout
+
+- Source files implement the application and integrations.
+- `requirements.txt` or the project file declares dependencies.
+- `.env.example` documents configuration names without live values.
+- `.gitignore` excludes credentials, sessions, generated data and build output.
+- `assets/banner.svg` is an original animated vector illustration. It has a static fallback and respects reduced-motion preferences in supporting viewers.
+
+## Verification
+
+See [VALIDATION.md](VALIDATION.md) for the checks performed on this publication snapshot and the remaining deployment checks. A source check is not an end-to-end test of Discord, Telegram, music sites or your host.
+
+## Privacy and upstream services
+
+This repository is a configurable source distribution. It does not include a production database, personal saved-link collection, message archive, credentials, media library or existing Git history. Review local changes before committing them.
+
+Third-party APIs, libraries and products remain the work of their respective maintainers. Review their terms and licenses before redistribution or deployment. The original project artwork is stored locally; it does not depend on a remote GIF or tracking service.
