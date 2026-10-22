@@ -1,5 +1,3 @@
-![Activity Garden animated banner](assets/banner.svg)
-
 # Activity Garden
 
 A small, deliberately decorative daily activity log. This component records an automated date and counter; it does not represent daily manual coding work.
